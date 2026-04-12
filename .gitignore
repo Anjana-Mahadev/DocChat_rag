@@ -1,0 +1,75 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# VS Code
+.vscode/
+
+# Environment variables
+.env
+
+# Virtual environments
+venv/
+ENV/
+.env.bak
+.env.example
+
+# Node modules
+frontend/node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# FAISS index
+rag/faiss_index/
+
+# Ignore logs
+*.log
+
+# Ignore ragas evaluation outputs
+resources/ragas_eval_set*.csv
+
+# Do NOT ignore users.db
+!users.db

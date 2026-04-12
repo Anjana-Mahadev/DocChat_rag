@@ -1,0 +1,131 @@
+/* Removed for new frontend */
+.chatbotContainer {
+  max-width: 700px;
+  margin: 48px auto;
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 8px 40px rgba(60,72,100,0.16);
+  padding: 0 0 32px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.header {
+  background: linear-gradient(90deg, #6366f1 0%, #3730a3 100%);
+  color: #fff;
+  padding: 32px 40px 24px 40px;
+  border-radius: 0 0 32px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 2.1rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin: 0;
+}
+
+.logoutBtn {
+  background: #fff;
+  color: #6366f1;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 22px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(60,72,100,0.08);
+  transition: background 0.2s, color 0.2s;
+}
+.logoutBtn:hover {
+  background: #6366f1;
+  color: #fff;
+}
+
+.messages {
+  background: #f8fafc;
+  border-radius: 18px;
+  padding: 24px 32px;
+  margin: 32px 40px 0 40px;
+  min-height: 260px;
+  max-height: 340px;
+  overflow-y: auto;
+  box-shadow: 0 2px 8px rgba(60,72,100,0.04);
+}
+
+.messageRow {
+  display: flex;
+  margin-bottom: 18px;
+}
+.userMsg {
+  margin-left: auto;
+  background: linear-gradient(90deg, #6366f1 0%, #3730a3 100%);
+  color: #fff;
+  border-radius: 16px 16px 4px 16px;
+  padding: 12px 20px;
+  max-width: 60%;
+  font-size: 1.08rem;
+  box-shadow: 0 2px 8px rgba(60,72,100,0.08);
+}
+.botMsg {
+  margin-right: auto;
+  background: #e0e7ff;
+  color: #3730a3;
+  border-radius: 16px 16px 16px 4px;
+  padding: 12px 20px;
+  max-width: 60%;
+  font-size: 1.08rem;
+  box-shadow: 0 2px 8px rgba(60,72,100,0.08);
+}
+
+.formRow {
+  display: flex;
+  gap: 12px;
+  margin: 32px 40px 0 40px;
+}
+.input {
+  flex: 1;
+  padding: 14px 16px;
+  border: 1.5px solid #c7d2fe;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  background: #f8fafc;
+  transition: border 0.2s;
+}
+.input:focus {
+  border-color: #6366f1;
+  outline: none;
+}
+.sendBtn {
+  background: linear-gradient(90deg, #6366f1 0%, #3730a3 100%);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0 32px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.sendBtn:disabled {
+  background: #c7d2fe;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+  .chatbotContainer {
+    max-width: 98vw;
+    margin: 16px auto;
+  }
+  .header, .messages, .formRow {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
