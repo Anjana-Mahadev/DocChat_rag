@@ -113,8 +113,8 @@ export default function Chat() {
         <div className="docchat-content" style={{alignItems: 'center', paddingTop: '1.1rem', display: 'flex', flexDirection: 'column', width: '100%', maxWidth: 600, margin: '0 auto'}}>
           {messages.length === 0 && (
             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '0.4rem'}}>
-              <div className="docchat-welcome-icon" style={{margin: 0, marginBottom: '0.4rem', width: 38, height: 38, fontSize: '1.3rem', background: '#23242a', color: '#22d3ee'}}>
-                <span role="img" aria-label="bot">🤖</span>
+              <div className="docchat-welcome-icon" style={{margin: 0, marginBottom: '0.4rem', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                <img src="https://public.readdy.ai/ai/img_res/2843383d-d3a4-4825-9ff5-4537b840cea4.png" alt="DocChat Logo" style={{width: 72, height: 72, objectFit: 'contain'}} />
               </div>
               <div>
                 <div className="docchat-welcome-title" style={{marginBottom: 0, textAlign: 'center', fontSize: '1.08rem', color: '#f3f4f6'}}>How can I help you today?</div>
