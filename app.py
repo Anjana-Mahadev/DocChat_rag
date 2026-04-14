@@ -120,8 +120,13 @@ from rag.rag_pipeline import answer_question
 from rag.rbac import get_user_role
 from rag.guardrails import check_guardrails
 
+class ChatMessage(BaseModel):
+    role: str  # 'user' or 'assistant'
+    content: str
+
 class QueryRequest(BaseModel):
     question: str
+    history: list[ChatMessage] = []
 
 # Protected query endpoint
 @app.post("/query")
@@ -130,5 +135,6 @@ async def query(request: QueryRequest, current_user: User = Depends(get_current_
     guardrail_result = check_guardrails(request.question, role)
     if not guardrail_result["allowed"]:
         raise HTTPException(status_code=403, detail=guardrail_result["reason"])
-    answer = answer_question(request.question, role)
+    history = [{"role": m.role, "content": m.content} for m in request.history[-10:]]
+    answer = answer_question(request.question, role, history=history)
     return {"answer": answer}

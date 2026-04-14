@@ -6,9 +6,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Chat from "./pages/Chat";
 import NotFound from "./pages/NotFound";
-import "./styles/Landing.css";
-import "./styles/Auth.css";
-import "./styles/Chat.css";
+import "./App.css";
 
 function App() {
   return (
