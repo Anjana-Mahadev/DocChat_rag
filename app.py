@@ -49,7 +49,7 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 60
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 # OAuth2 scheme
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/token")
 
 
 def verify_password(plain, hashed):
@@ -77,7 +77,7 @@ class RegisterRequest(BaseModel):
     password: str
     role: str
 
-@app.post("/register")
+@app.post("/api/register")
 def register(request: RegisterRequest, db: SessionLocal = Depends(get_db)):
     if get_user_by_username(db, request.username):
         raise HTTPException(status_code=400, detail="Username already registered")
@@ -91,7 +91,7 @@ def register(request: RegisterRequest, db: SessionLocal = Depends(get_db)):
     db.refresh(user)
     return {"msg": "User registered successfully"}
 
-@app.post("/token")
+@app.post("/api/token")
 async def login(form_data: OAuth2PasswordRequestForm = Depends(), db: SessionLocal = Depends(get_db)):
     user = authenticate_user(db, form_data.username, form_data.password)
     if not user:
@@ -129,7 +129,7 @@ class QueryRequest(BaseModel):
     history: list[ChatMessage] = []
 
 # Protected query endpoint
-@app.post("/query")
+@app.post("/api/query")
 async def query(request: QueryRequest, current_user: User = Depends(get_current_user)):
     role = current_user.role
     guardrail_result = check_guardrails(request.question, role)

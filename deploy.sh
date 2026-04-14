@@ -84,6 +84,10 @@ find src/ -name '*.js' -exec sed -i \
 npm install
 npm run build
 
+# Fix permissions so Nginx (www-data) can read the build directory
+chmod 755 /home/${APP_USER}
+chmod -R 755 "${APP_DIR}/frontend/build"
+
 # ── 5. Systemd service for FastAPI backend ───────────────────────────────────
 echo "[5/6] Creating systemd service..."
 cat > /etc/systemd/system/${SERVICE_NAME}.service <<EOF
@@ -130,24 +134,7 @@ server {
     index index.html;
 
     # ── API routes → FastAPI backend ──
-    location /register {
-        proxy_pass http://127.0.0.1:${BACKEND_PORT};
-        proxy_set_header Host \$host;
-        proxy_set_header X-Real-IP \$remote_addr;
-        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto \$scheme;
-        proxy_read_timeout 120s;
-    }
-
-    location /token {
-        proxy_pass http://127.0.0.1:${BACKEND_PORT};
-        proxy_set_header Host \$host;
-        proxy_set_header X-Real-IP \$remote_addr;
-        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto \$scheme;
-    }
-
-    location /query {
+    location /api/ {
         proxy_pass http://127.0.0.1:${BACKEND_PORT};
         proxy_set_header Host \$host;
         proxy_set_header X-Real-IP \$remote_addr;

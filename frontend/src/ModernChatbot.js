@@ -22,7 +22,7 @@ function ModernChatbot({ token, onLogout }) {
     setMessages(msgs => [...msgs, userMsg]);
     try {
       const res = await axios.post(
-        'http://127.0.0.1:8000/query',
+        'http://127.0.0.1:8000/api/query',
         { question },
         { headers: { Authorization: `Bearer ${token}` } }
       );

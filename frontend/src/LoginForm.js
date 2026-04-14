@@ -15,7 +15,7 @@ function LoginForm({ onLogin }) {
     setLoading(true);
     setError('');
     try {
-      const res = await axios.post('http://127.0.0.1:8000/token', new URLSearchParams(form));
+      const res = await axios.post('http://127.0.0.1:8000/api/token', new URLSearchParams(form));
       onLogin(res.data.access_token);
     } catch (err) {
       setError(err.response?.data?.detail || 'Login failed');

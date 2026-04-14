@@ -36,7 +36,7 @@ export default function Chat() {
     }));
     setMessages((msgs) => [...msgs, { sender: "user", text: question }]);
     try {
-      const res = await fetch("http://localhost:8000/query", {
+      const res = await fetch("http://localhost:8000/api/query", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

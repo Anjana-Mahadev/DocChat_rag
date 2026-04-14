@@ -38,7 +38,7 @@ export default function Register() {
     setSuccess("");
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:8000/register", {
+      const res = await fetch("http://localhost:8000/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username: userId, password, role })
@@ -48,7 +48,7 @@ export default function Register() {
         throw new Error(data.detail || "Registration failed");
       }
       setSuccess("Account created successfully! Redirecting to chat...");
-      const loginRes = await fetch("http://localhost:8000/token", {
+      const loginRes = await fetch("http://localhost:8000/api/token", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams({ username: userId, password })
