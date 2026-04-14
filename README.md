@@ -437,9 +437,4 @@ axios
 react-scripts
 ```
 
----
-
-## License
-
-MIT
 
