@@ -15,3 +15,4 @@ passlib[bcrypt]
 python-multipart
 bcrypt==4.1.2
 sqlalchemy
+rank_bm25

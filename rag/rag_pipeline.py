@@ -4,6 +4,7 @@ import os
 import argparse
 from langchain_community.vectorstores.faiss import FAISS
 from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.retrievers import BM25Retriever
 from rag.rbac import has_access, get_user_role
 from langchain_groq import ChatGroq
 
@@ -19,21 +20,54 @@ def load_vector_store():
     return db
 
 
-# Retrieve docs with RBAC filtering
+# Retrieve docs with hybrid search (dense + sparse) and RBAC filtering
 def retrieve_docs(question, role, k=5):
     db = load_vector_store()
-    docs_and_scores = db.similarity_search_with_score(question, k=k)
+    
+    # Dense retrieval (semantic similarity via embeddings)
+    dense_results = db.similarity_search_with_score(question, k=k)
+    
+    # Sparse retrieval (keyword-based BM25)
+    docs_list = list(db.docstore._dict.values())
+    sparse_retriever = BM25Retriever.from_documents(docs_list)
+    sparse_retriever.k = k
+    sparse_results = sparse_retriever.invoke(question)
+    
+    # Combine results: dense (60% weight) + sparse (40% weight)
+    # Create a combined dict for deduplication
+    combined = {}
+    
+    # Add dense results
+    for doc, score in dense_results:
+        doc_id = doc.page_content[:100]
+        if doc_id not in combined:
+            combined[doc_id] = {"doc": doc, "score": score * 0.6}
+    
+    # Add sparse results (note: sparse results don't have scores by default)
+    for doc in sparse_results:
+        doc_id = doc.page_content[:100]
+        if doc_id not in combined:
+            combined[doc_id] = {"doc": doc, "score": 0.4}
+        else:
+            # If already in combined, boost the score
+            combined[doc_id]["score"] += 0.4
+    
+    # Sort by combined score
+    sorted_docs = sorted(combined.items(), key=lambda x: x[1]["score"], reverse=True)
+    
     # Filter by RBAC
     filtered = []
-    for doc, score in docs_and_scores:
+    for doc_id, item in sorted_docs:
+        doc = item["doc"]
         meta = doc.metadata
         if has_access(role, meta.get("department", "general")):
             filtered.append({
                 "content": doc.page_content,
                 "department": meta.get("department"),
                 "filename": meta.get("filename"),
-                "score": score
+                "score": item["score"]
             })
+    
     return filtered
 
 # Build a history-aware search query so retrieval considers conversation context
@@ -66,23 +100,25 @@ def answer_question(question, role, history=None):
             lines.append(f"{prefix}: {msg['content']}")
         history_section = "Conversation History:\n" + "\n".join(lines) + "\n\n"
 
+    # Check if question is a simple greeting
+    greeting_words = ["hi", "hello", "hey", "good morning", "good afternoon", "good evening", "howdy", "greetings"]
+    is_greeting = any(word in question.lower() for word in greeting_words)
+    
+    if is_greeting:
+        # Simple greeting response
+        response = llm.invoke(f"User says: {question}\n\nRespond briefly and naturally, like a friendly assistant. Keep it to 1-2 sentences.")
+        return response.content if hasattr(response, "content") else str(response)
+    
+    # Standard Q&A prompt for document-based queries
     prompt = f"""You are a helpful company assistant.
 
 {history_section}Retrieved Documents:
 {context}
 
-Current Question: {question}
+Question: {question}
 
-Instructions:
-- Answer the current question using the retrieved documents and conversation history above.
-- If the current question is a follow-up or refers to something from the conversation history, use that context to give a relevant answer.
-- If the answer is not found in the documents, say so clearly.
-- Structure your answer clearly using Markdown formatting:
-  - Use numbered lists (1. 2. 3.) for sequential steps or processes.
-  - Use bullet points (- ) for non-sequential items, sub-details, or lists of options.
-  - Use **bold** for key terms, policy names, or important values.
-  - Break your answer into logical sections when covering multiple topics.
-- Be accurate, well-organized, and concise."""
+Answer based on the documents and conversation history. Be accurate and concise. If info is not in documents, say so."""
+    
     response = llm.invoke(prompt)
     return response.content if hasattr(response, "content") else str(response)
 

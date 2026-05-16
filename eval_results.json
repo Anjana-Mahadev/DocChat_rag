@@ -1,0 +1,230 @@
+{
+  "timestamp": "2026-05-07T23:33:33.179360",
+  "role": "c_level",
+  "total_questions": 22,
+  "passed": 22,
+  "failed": 0,
+  "questions": [
+    {
+      "id": 1,
+      "question": "What is the core mission of FinSolve Technologies?",
+      "expected_answer": "To empower financial freedom through secure, scalable, and innovative technology solutions.",
+      "actual_answer": "---\n\n## Welcome & Introduction\n\n### Company Vision and Mission\nAt FinSolve Technologies, our vision  ### Company Overview\nFounded in 2016, FinSolve Technologies is a leading player in fintech with a p...",
+      "docs_retrieved": 5,
+      "context_match": true,
+      "answer_relevant": true,
+      "status": "PASS"
+    },
+    {
+      "id": 2,
+      "question": "What architectural approach does FinSolve use for its product ecosystem?",
+      "expected_answer": "A microservices-based, cloud-native system designed for scalability, resilience, and security.",
+      "actual_answer": "### 1.2 Purpose\nThis engineering document outlines the technical architecture, development processes ## 2. System Architecture\n\n### 2.1 Overview\nFinSolve's architecture is a microservices-based, cloud...",
+      "docs_retrieved": 5,
+      "context_match": true,
+      "answer_relevant": true,
+      "status": "PASS"
+    },
+    {
+      "id": 3,
+      "question": "By what percentage did FinSolve Technologies' revenue grow in 2024?",
+      "expected_answer": "25%.",
+      "actual_answer": "FinSolve Technologies's revenue grew by 25% in 2024, driven largely by the global expansion of its s In 2024, FinSolve Technologies Inc. delivered exceptional financial performance, achieving signific...",
+      "docs_retrieved": 5,
+      "context_match": true,
+      "answer_relevant": true,
+      "status": "PASS"
+    },
+    {
+      "id": 4,
+      "question": "What was the gross margin for FinSolve Technologies in 2024?",
+      "expected_answer": "60%.",
+      "actual_answer": "# Quarterly Financial Report - FinSolve Technologies Inc. 2024 # Financial Report for FinSolve Technologies Inc. - 2024 FinSolve Technologies Inc. achieved remarkable financial results in 2024, with t...",
+      "docs_retrieved": 5,
+      "context_match": true,
+      "answer_relevant": true,
+      "status": "PASS"
+    },
+    {
+      "id": 5,
+      "question": "What was the main driver of increased vendor-related expenses in 2024?",
+      "expected_answer": "Marketing-related expenses and training/education.",
+      "actual_answer": "1. **Vendor Services** - A total of $30M, representing a 18% increase from the previous year. The la Operational Insights:\n-------------------------------------------\nIn 2024, operational efficiency w...",
+      "docs_retrieved": 5,
+      "context_match": true,
+      "answer_relevant": true,
+      "status": "PASS"
+    },
+    {
+      "id": 6,
+      "question": "What was the Q1 2024 revenue for FinSolve Technologies?",
+      "expected_answer": "$2.1 billion.",
+      "actual_answer": "In 2024, FinSolve Technologies Inc. delivered exceptional financial performance, achieving significa FinSolve Technologies Inc. achieved remarkable financial results in 2024, with total revenue of $9....",
+      "docs_retrieved": 5,
+      "context_match": true,
+      "answer_relevant": true,
+      "status": "PASS"
+    },
+    {
+      "id": 7,
+      "question": "What are the core values of FinSolve Technologies?",
+      "expected_answer": "Integrity, Respect, Innovation, Customer Focus, Accountability.",
+      "actual_answer": "### 1.2 Purpose\nThis engineering document outlines the technical architecture, development processes ### Company Overview\nFounded in 2016, FinSolve Technologies is a leading player in fintech with a p...",
+      "docs_retrieved": 5,
+      "context_match": true,
+      "answer_relevant": true,
+      "status": "PASS"
+    },
+    {
+      "id": 8,
+      "question": "What is the company\u2019s vision?",
+      "expected_answer": "To empower businesses and individuals through innovative technology solutions.",
+      "actual_answer": "---\n\n## Welcome & Introduction\n\n### Company Vision and Mission\nAt FinSolve Technologies, our vision  Customer Insights:\n-------------------------------------------\nThe Marketing Department's success i...",
+      "docs_retrieved": 5,
+      "context_match": true,
+      "answer_relevant": true,
+      "status": "PASS"
+    },
+    {
+      "id": 9,
+      "question": "Who is the HR Manager at FinSolve Technologies?",
+      "expected_answer": "Vihaan Chowdhury.",
+      "actual_answer": "### Company Overview\nFounded in 2016, FinSolve Technologies is a leading player in fintech with a pr # Marketing Report for FinSolve Technologies Inc. - 2024 ### 10.3 Contact Information\n\n| Team | Ema...",
+      "docs_retrieved": 5,
+      "context_match": false,
+      "answer_relevant": true,
+      "status": "PASS"
+    },
+    {
+      "id": 10,
+      "question": "What is the attendance percentage of Aadhya Patel?",
+      "expected_answer": "99.31%.",
+      "actual_answer": "employee_id,full_name,role,department,email,location,date_of_birth,date_of_joining,manager_id,salary ### Salary Reviews & Increases\n- Annual performance-based increments.\n- Market adjustments and prom...",
+      "docs_retrieved": 5,
+      "context_match": true,
+      "answer_relevant": true,
+      "status": "PASS"
+    },
+    {
+      "id": 11,
+      "question": "What was the marketing spend in Q4 2024?",
+      "expected_answer": "$2.5 million.",
+      "actual_answer": "These efforts were supported by a strategic allocation of resources, with a marketing spend of $2.5  ## Conclusion\nQ4 2024 was a transformative quarter for our marketing efforts, with significant stri...",
+      "docs_retrieved": 5,
+      "context_match": true,
+      "answer_relevant": true,
+      "status": "PASS"
+    },
+    {
+      "id": 12,
+      "question": "What was the customer acquisition target for Q4 2024?",
+      "expected_answer": "220,000 new customers.",
+      "actual_answer": "## Conclusion\nQ4 2024 was a transformative quarter for our marketing efforts, with significant strid The Q4 2024 marketing efforts were pivotal in solidifying our market position, enhancing customer e...",
+      "docs_retrieved": 5,
+      "context_match": true,
+      "answer_relevant": true,
+      "status": "PASS"
+    },
+    {
+      "id": 13,
+      "question": "What was the ROI target for Q4 2024 marketing activities?",
+      "expected_answer": "4.4x.",
+      "actual_answer": "These efforts were supported by a strategic allocation of resources, with a marketing spend of $2.5  These efforts were supported by a marketing spend of $2.5 million, allocated to achieve a balanced ...",
+      "docs_retrieved": 5,
+      "context_match": true,
+      "answer_relevant": true,
+      "status": "PASS"
+    },
+    {
+      "id": 14,
+      "question": "What databases are used in the data layer of FinSolve's architecture?",
+      "expected_answer": "PostgreSQL, MongoDB, Redis, and Amazon S3.",
+      "actual_answer": "## 2. System Architecture\n\n### 2.1 Overview\nFinSolve's architecture is a microservices-based, cloud- # FinSolve Technologies Engineering Document\n\n## 1. Introduction\n\n### 1.1 Company Overview\nFinSolve...",
+      "docs_retrieved": 5,
+      "context_match": true,
+      "answer_relevant": true,
+      "status": "PASS"
+    },
+    {
+      "id": 15,
+      "question": "What is the main function of the API Gateway in FinSolve's system?",
+      "expected_answer": "It acts as a centralized entry point for all client requests, handling authentication, authorization, rate limiting, and request logging.",
+      "actual_answer": "## 2. System Architecture\n\n### 2.1 Overview\nFinSolve's architecture is a microservices-based, cloud- ### 1.2 Purpose\nThis engineering document outlines the technical architecture, development processe...",
+      "docs_retrieved": 5,
+      "context_match": true,
+      "answer_relevant": true,
+      "status": "PASS"
+    },
+    {
+      "id": 16,
+      "question": "What is the net margin for FinSolve Technologies in 2024?",
+      "expected_answer": "12%.",
+      "actual_answer": "2. **Net Margin**: 12% (Consistent with 2023)\n   - *Industry Benchmark*: 10%\n   - FinSolve Technolog # Quarterly Financial Report - FinSolve Technologies Inc. 2024 overview of FinSolve Technologies\u2019s ...",
+      "docs_retrieved": 5,
+      "context_match": true,
+      "answer_relevant": true,
+      "status": "PASS"
+    },
+    {
+      "id": 17,
+      "question": "What is the recommended strategy for managing vendor cost inflation?",
+      "expected_answer": "Develop a comprehensive vendor risk management plan, regularly review contracts, and negotiate prices.",
+      "actual_answer": "Risk Analysis and Mitigation Strategies:\n-------------------------------------------\n1. **Risk: Vend **Recommendations**:\n1. **Vendor Management**: Continue negotiations for better pricing, especially...",
+      "docs_retrieved": 5,
+      "context_match": true,
+      "answer_relevant": true,
+      "status": "PASS"
+    },
+    {
+      "id": 18,
+      "question": "What was the Q2 2024 revenue for FinSolve Technologies?",
+      "expected_answer": "$2.3 billion.",
+      "actual_answer": "In 2024, FinSolve Technologies Inc. delivered exceptional financial performance, achieving significa FinSolve Technologies Inc. achieved remarkable financial results in 2024, with total revenue of $9....",
+      "docs_retrieved": 5,
+      "context_match": true,
+      "answer_relevant": true,
+      "status": "PASS"
+    },
+    {
+      "id": 19,
+      "question": "What was the Q3 2024 revenue for FinSolve Technologies?",
+      "expected_answer": "$2.4 billion.",
+      "actual_answer": "In 2024, FinSolve Technologies Inc. delivered exceptional financial performance, achieving significa FinSolve Technologies Inc. achieved remarkable financial results in 2024, with total revenue of $9....",
+      "docs_retrieved": 5,
+      "context_match": true,
+      "answer_relevant": true,
+      "status": "PASS"
+    },
+    {
+      "id": 20,
+      "question": "What is the standard annual privilege/leave entitlement for employees?",
+      "expected_answer": "15-21 days per year, accrued monthly.",
+      "actual_answer": "### Types of Leave\n| Leave Type | Entitlement/Details |\n|------------|---------------------|\n| **Pri ## Table of Contents\n1. [Welcome & Introduction](#welcome--introduction)\n2. [Employee Onboarding & ...",
+      "docs_retrieved": 5,
+      "context_match": true,
+      "answer_relevant": true,
+      "status": "PASS"
+    },
+    {
+      "id": 21,
+      "question": "What is the recommended conversion optimization strategy for Q1 2025?",
+      "expected_answer": "Invest in advanced A/B testing and user experience improvements to achieve the 15.0% conversion rate target.",
+      "actual_answer": "## Recommendations for Q1 2025\nBased on Q4 performance, we propose the following strategies for Q1 2 ## Recommendations for Q3 2024\nBased on Q2 performance, we propose the following strategies for Q3 ...",
+      "docs_retrieved": 5,
+      "context_match": true,
+      "answer_relevant": true,
+      "status": "PASS"
+    },
+    {
+      "id": 22,
+      "question": "How many new enterprise contracts were secured through account-based marketing in Q4 2024?",
+      "expected_answer": "10 new contracts worth $1.2 million in annual recurring revenue.",
+      "actual_answer": "### B2B Initiatives\n- **Account-Based Marketing**: Targeted 50 high-value enterprise accounts, secur ## Conclusion\nQ4 2024 was a transformative quarter for our marketing efforts, with significant stri...",
+      "docs_retrieved": 5,
+      "context_match": true,
+      "answer_relevant": true,
+      "status": "PASS"
+    }
+  ],
+  "ragas_metrics": {}
+}

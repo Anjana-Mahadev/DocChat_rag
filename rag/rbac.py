@@ -4,6 +4,7 @@ ROLE_PERMISSIONS = {
     "finance": ["finance", "marketing", "general"],
     "hr": ["hr", "general"],
     "c_level": ["finance", "hr", "marketing", "engineering", "sales", "general"],
+    "admin": ["finance", "hr", "marketing", "engineering", "sales", "general"],
     "engineer": ["engineering", "general"],
     "sales": ["sales", "marketing", "general"],
     "general": ["general"],

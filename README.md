@@ -6,7 +6,7 @@ A production-ready, full-stack **Retrieval-Augmented Generation (RAG)** chatbot 
 
 Large Language Models are powerful, but they hallucinate and lack access to private data. This platform solves both problems by:
 
-1. **Retrieval** — Relevant document chunks are fetched from a FAISS vector store using semantic search, so answers are grounded in real company data.
+1. **Hybrid Retrieval** — Documents are retrieved using both dense (semantic embeddings) and sparse (keyword-based BM25) search, ensuring answers capture both semantic meaning and exact keyword matches. Results are grounded in real company data.
 2. **Access Control** — Role-Based Access Control (RBAC) ensures each user only sees documents they are authorized to access (finance, HR, engineering, etc.).
 3. **Safety** — Input guardrails block PII leakage, profanity, and off-topic queries before they ever reach the LLM.
 4. **Modern Stack** — A React frontend communicates over JWT-secured REST APIs with a FastAPI backend, which orchestrates the full RAG pipeline and calls a Groq-hosted Llama-3.3-70b model.
@@ -18,12 +18,13 @@ Large Language Models are powerful, but they hallucinate and lack access to priv
 | **LLM** | Groq API — Llama-3.3-70b-versatile |
 | **Embeddings** | HuggingFace all-MiniLM-L6-v2 (local) |
 | **Vector Store** | FAISS (CPU) |
+| **Retrieval** | Hybrid search: Dense (60% weight) via embeddings + Sparse (40% weight) via BM25 |
 | **Auth** | JWT (OAuth2 password flow) + bcrypt password hashing |
 | **RBAC** | 6 roles, 6 department scopes |
 | **Guardrails** | PII detection, profanity filter, out-of-scope blocker |
 | **Frontend** | React, React Router, Axios, Modular CSS |
 | **Backend** | FastAPI, SQLAlchemy, SQLite |
-| **Orchestration** | LangChain (retrieval + prompt assembly) |
+| **Orchestration** | LangChain (hybrid retrieval + prompt assembly) |
 
 ---
 
@@ -87,8 +88,9 @@ Large Language Models are powerful, but they hallucinate and lack access to priv
 │                                      │  └──────────┬──────────────────┘  │  │
 │                                      │             ▼                     │  │
 │                                      │  ┌─────────────────────────────┐  │  │
-│                                      │  │  2. Semantic Search (FAISS) │  │  │
-│                                      │  │     similarity_search       │  │  │
+│                                      │  │  2. Hybrid Search           │  │  │
+│                                      │  │  ├─ Dense (60%): FAISS      │  │  │
+│                                      │  │  └─ Sparse (40%): BM25      │  │  │
 │                                      │  └──────────┬──────────────────┘  │  │
 │                                      │             ▼                     │  │
 │                                      │  ┌─────────────────────────────┐  │  │
@@ -98,8 +100,7 @@ Large Language Models are powerful, but they hallucinate and lack access to priv
 │                                      │             ▼                     │  │
 │                                      │  ┌─────────────────────────────┐  │  │
 │                                      │  │  4. Prompt Construction     │  │  │
-│                                      │  │     Context + History +     │  │  │
-│                                      │  │     System Instructions     │  │  │
+│                                      │  │     Context + History       │  │  │
 │                                      │  └──────────┬──────────────────┘  │  │
 │                                      │             ▼                     │  │
 │                                      │  ┌─────────────────────────────┐  │  │
@@ -245,7 +246,7 @@ User Question
 │  FastAPI · SQLAlchemy · python-jose (JWT) · bcrypt         │
 ├───────────────────────────────────────────────────────────┤
 │                   RAG PIPELINE                            │
-│  LangChain · FAISS · HuggingFace Embeddings (MiniLM)      │
+│  LangChain · FAISS · HuggingFace Embeddings · BM25         │
 ├───────────────────────────────────────────────────────────┤
 │                    LLM PROVIDER                           │
 │  Groq API · Llama-3.3-70b-versatile                        │
@@ -263,10 +264,13 @@ User Question
 ## Features
 
 ### Backend (Python/FastAPI)
-- **RAG Pipeline:**
-	- Uses Langchain for document retrieval and LLM orchestration
-	- FAISS vector store for fast semantic search
-	- HuggingFace embeddings (MiniLM)
+- **RAG Pipeline (Hybrid Search):**
+	- Uses LangChain for orchestration and LLM integration
+	- **Hybrid retrieval strategy:**
+		- Dense search (60% weight): FAISS vector store with HuggingFace MiniLM embeddings for semantic similarity
+		- Sparse search (40% weight): BM25 keyword-based matching via rank_bm25 for exact term matching
+		- Results are combined and deduplicated by weighted scores
+	- Document chunks enriched with metadata (department, filename) for RBAC filtering
 - **RBAC (Role-Based Access Control):**
 	- User roles (finance, hr, c_level, engineer, sales, general)
 	- Department-level document access filtering
@@ -278,6 +282,8 @@ User Question
 	- Password hashing (bcrypt)
 - **Groq LLM Integration:**
 	- Uses Groq API (Llama-3.3-70b-versatile) for answering questions
+	- Greeting detection: Simple 1-2 sentence responses for casual greetings ("hi", "hello", etc.)
+	- Document-based Q&A: Concise, accurate answers grounded in retrieved documents
 - **Data Ingestion:**
 	- Ingests and chunks documents from `resources/` by department
 	- Indexes with metadata for RBAC
@@ -417,6 +423,7 @@ langchain-groq
 sentence-transformers
 faiss-cpu
 groq
+rank_bm25
 ragas
 langsmith
 python-dotenv
@@ -426,6 +433,7 @@ python-jose
 passlib[bcrypt]
 python-multipart
 bcrypt==4.1.2
+sqlalchemy
 ```
 
 **Frontend:**
